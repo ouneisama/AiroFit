@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>AI举手计数</title>
+    <style>
+        body{text-align:center; font-size:22px; margin-top:30px;}
+        button{padding:12px 30px; font-size:18px; margin:10px; cursor:pointer;}
+        #count{font-size:30px; color:red; font-weight:bold;}
+    </style>
+</head>
+
+<body>
+    <h1>AI 举手识别 + 自动计数</h1>
+
+    <!-- 视频画面 -->
+    <img id="video" width="640" height="480"><br>
+
+    <!-- 按钮 -->
+    <button onclick="startDetect()">开始检测</button>
+    <button onclick="resetCount()">重置计数</button>
+
+    <h3>当前举手次数：<span id="count">0</span></h3>
+
+<script>
+    // 开始检测
+    function startDetect(){
+        document.getElementById("video").src = "/video_feed";
+        setInterval(updateCount, 500);
+    }
+
+    // 更新计数
+    async function updateCount(){
+        let res = await fetch("/get_count");
+        let data = await res.json();
+        document.getElementById("count").innerText = data.count;
+    }
+
+    // 重置
+    async function resetCount(){
+        await fetch("/reset");
+        document.getElementById("count").innerText = 0;
+    }
+</script>
+
+</body>
+</html>

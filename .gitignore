@@ -1,0 +1,35 @@
+# ===== 密钥与环境变量 =====
+.env
+.env.*
+!.env.example
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.egg-info/
+venv/
+.venv/
+*.sqlite3
+*.db
+
+# 运行时产生的数据库与实例目录
+backend/fitness.db
+instance/
+
+# ===== 用户上传的图片（含私人照片，不入库） =====
+backend/static/uploads/*
+!backend/static/uploads/.gitkeep
+
+# ===== Node =====
+node_modules/
+dist/
+dist-ssr/
+.vite/
+*.local
+package-lock.json.bak
+
+# ===== 编辑器与系统 =====
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
